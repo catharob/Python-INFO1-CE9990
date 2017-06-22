@@ -56,7 +56,7 @@ allWeight = strawWeight + bananaWeight + blueWeight + milkWeight
 allOz = round(allWeight*.035, 2)
 
 print("Let's add half a cup of milk.")
-print("Your smoothie contains ", s, " strawberries, ", ba, " bananas, ", bl, " blueberries, and milk.", sep ="")
-print("That's a ", allCal, " calorie smoothie. It's about ", allOz, " ounces.")
+print("Your smoothie contains", s, "strawberries,", ba, "bananas,", bl, "blueberries, and milk.")
+print("That's a", allCal, "calorie smoothie. It's about", allOz, "ounces.")
 
 sys.exit(0)
