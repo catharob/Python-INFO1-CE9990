@@ -15,36 +15,36 @@ cSpace = int(input("How many columns of spaces in each box (e.g., 3)? "))
 r = 1
 # c = 1
 # rs = 1
-cs = 1
+# cs = 1
 
 while r <= rows:
 	print("\n", end = "")
 	rs = 1
 	c = 1
 	while rs <= rSpace:
-		# c = 1
+		
 		while c <= columns:
 
 			print("+", end = "")
-
+			cs = 1
 			while cs <= cSpace:
 				print("-", end = "")
 				cs += 1
 
 			c += 1
-			cs = 1
+			
 		print("\n", end = "")
 		c = 1
 		
 
 		while c <= columns:
 			print("|", end = "")
-
+			cs = 1
 			while cs <= cSpace:
 				print(" ", end = "")
 				cs += 1 
 			c +=1
-			cs = 1
+			
 		rs +=1
 
 	# rs = 1
