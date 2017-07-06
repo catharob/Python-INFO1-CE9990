@@ -16,15 +16,15 @@ columns = int(input("How many columns of boxes? "))
 rSpace = int(input("How many rows of spaces in each box (e.g., 1)? "))
 cSpace = int(input("How many columns of spaces in each box (e.g., 3)? "))
 
-tinyPlusUnit = ("+" + cSpace*"-")
-longPlusLine = (columns*tinyPlusUnit + "+\n")
+tinyPlusUnit = "+" + cSpace*"-"
+longPlusLine = columns*tinyPlusUnit + "+\n"
 
-tinyBarUnit = ("|" + cSpace*" ")
-longBarLine = (columns*tinyBarUnit + "|\n")
+tinyBarUnit = "|" + cSpace*" "
+longBarLine = columns*tinyBarUnit + "|\n"
 
-wholeRow = (longPlusLine + rSpace*longBarLine)
+wholeRow = longPlusLine + rSpace*longBarLine
 
-wholeGraphPaper = (rows*wholeRow + longPlusLine)
+wholeGraphPaper = rows*wholeRow + longPlusLine
 
 print(wholeGraphPaper)
 
