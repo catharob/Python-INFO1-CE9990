@@ -19,7 +19,7 @@ root.geometry(str(width) + "x" + str(height))
 swedishBlue = "#005b99"
 swedishYellow = "#fcd116"
 
-canvas = tkinter.Canvas(root, highlightthickness = 0, background = swedishYellow)
+canvas = tkinter.Canvas(root, highlightthickness = 0, background = swedishBlue)
 
 def drawPixel(x, y, color):
     """
@@ -28,22 +28,13 @@ def drawPixel(x, y, color):
     assert isinstance(x, int) and isinstance(y, int) and isinstance(color, str)
     canvas.create_rectangle(x, y, x + 1, y + 1, width = 0, fill = color)
 
-y = 0
-while y < height:
+for y in range(height):
 
-    x = 0
-    while x < width:
+    for x in range(width):
 
-        if x < width * 5/16 and y < 2 * yellowHeight:
-            drawPixel(x, y, swedishBlue)
-        elif x > width * 7/16 and y < 2 * yellowHeight:
-            drawPixel(x, y, swedishBlue)
-        elif x < width * 5/16 and y > 3 * yellowHeight:
-            drawPixel(x, y, swedishBlue)
-        elif x > width * 7/16 and y > 3 * yellowHeight:
-            drawPixel(x, y, swedishBlue)
-        x += 1
-    y += 1
+        if width * 5/16 <= x and x < width * 7/16 or 2 * yellowHeight < y and y < 3 * yellowHeight:
+            drawPixel(x, y, swedishYellow)
+        
 
 #Make the canvas visible by packing it into the root.
 canvas.pack(expand = tkinter.YES, fill = "both")
