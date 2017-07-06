@@ -17,25 +17,25 @@ rSpace = int(input("How many rows of spaces in each box (e.g., 1)? "))
 cSpace = int(input("How many columns of spaces in each box (e.g., 3)? "))
 
 
-def makePlusRow(input1, input2):
-	for j in range(0, input1):
+def makePlusRow(numberOfColumns, spaceInColumns):
+	for j in range(numberOfColumns):
 		print("+", end="")
-		for i in range(0, input2):
+		for i in range(spaceInColumns):
 			print("-", end="")
 	print("+")
 
-def makeBarRow(input1, input2):
-	for l in range(0, input1):
+def makeBarRow(numberOfColumns, spaceInColumns):
+	for l in range(numberOfColumns):
 		print("|", end="")
-		for k in range(0, input2):
+		for k in range(spaceInColumns):
 			print(" ", end="")
 	print("|")
 
-def makeGraphPaper(input3, input4):
-	for m in range(0, input3):
+def makeGraphPaper(numberOfRows, spaceInRows):
+	for m in range(numberOfRows):
 		makePlusRow(columns, cSpace)
 		x = 1
-		while x <= input4:
+		while x <= spaceInRows:
 			makeBarRow(columns, cSpace)
 			x +=1
 	makePlusRow(columns, cSpace)
