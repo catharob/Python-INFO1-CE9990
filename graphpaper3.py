@@ -12,20 +12,20 @@ columns = int(input("How many columns of boxes? "))
 rSpace = int(input("How many rows of spaces in each box (e.g., 1)? "))
 cSpace = int(input("How many columns of spaces in each box (e.g., 3)? "))
 
-for n in range(0, rows):
-	for j in range(0, columns):
+for n in range(rows):
+	for j in range(columns):
 		print("+", end="")
 		for i in range(0, cSpace):
 			print("-", end="")
 
-	print("")
+	print()
 
-	for m in range(0, rSpace):
-		for l in range(0, columns):
+	for m in range(rSpace):
+		for l in range(columns):
 			print("|", end="")
 			for k in range(0, cSpace):
 				print(" ", end="")
-		print("")
+		print()
 
 
 sys.exit(0)
