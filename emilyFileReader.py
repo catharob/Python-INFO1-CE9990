@@ -1,11 +1,27 @@
 """
 emilyFileReader.py
-Reads a poem and print it out.
+Reads a poem and prints it out.
+Then fixes all the improper capitalizations, with apologies to Emily Dickinson.
 """
 
 import sys
 
-#macOS
+def fixGrammar(line): #function to rewrite the poem getting rid of all capital letters except for proper "I"
+	lineFixed = []
+	lineSplit = line.split(" ")
+	firstWord = lineSplit[0]
+	lineFixed.append(firstWord)
+	restOfLineSplit = lineSplit[1:]
+	for word in restOfLineSplit:
+		if word == "I":
+			lineFixed.append(word)
+		else:
+			newWord = word.lower()
+			lineFixed.append(newWord)
+	lineFixed = " ".join(lineFixed)
+	print(lineFixed, end="")
+
+
 filename = "/Users/Catherine/Documents/Python Practice Programs/NYU Class/emily.txt"
 
 try:
@@ -18,14 +34,20 @@ except PermissionError:
     sys.exit(1)
 
 for line in lines:
-    print(line, end = "")   
+    print(line, end = "") 
 
-# NOTE: trying to turn capital letters into lower case letters (except if first letter of the line) but haven't yet succeeded.
-# for line in lines:
-# 	for letter in line:
-# 		if letter[] == 0 and letter.isupper():
-# 			letter.lower()
-# 	print(line, end = "")
+print()
+print()
+
+lines.seek(0)
+
+print("***Great poem. But now let's fix the grammar.***")
+print()
+
+
+for line in lines:
+	fixGrammar(line)
+
 
 lines.close()
 sys.exit(0)

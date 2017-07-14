@@ -6,6 +6,8 @@ Prints an abridged version of the lyrics to the Prologue of Natasha and Pierre a
 
 """
 
+import sys
+
 prologueIntro = [
     "There's a war going on",
     "Out there somewhere",
@@ -29,7 +31,7 @@ characters = [
     "Dolokhov is fierce",
     "Mary is plain",
     "Bolonsky is crazy",
-    "Balaga is fun",
+    "Balaga is fun"
 ]
 
 pierre = [
@@ -55,3 +57,5 @@ printIntroInterludePierre(prologueIntro)
 printCharacters(characters)
 
 printIntroInterludePierre(pierre)
+
+sys.exit(0)
