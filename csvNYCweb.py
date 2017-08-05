@@ -33,7 +33,7 @@ for i, line in enumerate(lines):
     r = csv.reader([s])         #[s] is a list containing one string
     fields = next(r)
           #fields is a list of strings
-    print(fields[0])
+    print(fields[1])
     if i >= 50:
         break
 
