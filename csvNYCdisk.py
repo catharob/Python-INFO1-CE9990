@@ -22,17 +22,17 @@ except PermissionError:
 
 zipCode = input("Please enter a New York City zip code: ")
 print("One moment please...")
-noiseList = []
+n = 0
 
 lines = csv.reader(csvfile)
 
 for line in lines:              
     if line[8] == zipCode and "Noise" in line[5]:  #finds noise complaints in zip code user chooses
-        noiseList.append(line[5])  # adds zip codes to list to be counted
+        n +=1  #counts instances of the zip entered
 
 csvfile.close()
 
-print("There have been", len(noiseList), "noise complaints in", zipCode, "from the start of 2015 to July 19, 2017.")
+print("There have been", n, "noise complaints in", zipCode, "from the start of 2015 to July 19, 2017.")
 
 
 sys.exit(0)
