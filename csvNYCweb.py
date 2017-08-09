@@ -25,7 +25,7 @@ while True:
         return datetime.datetime.strptime(fields[1], "%m/%d/%Y %I:%M:%S %p")
 
     zipCode = input("Please enter a 5 boros zip code: ")
-    print("Here are noise complaints made in this zip code from a random sample of five hundred 311 complaints.")
+    print("Here are noise complaints made in this zip code from a random sample of ten thousand 311 complaints.")
 
     noiseLines = []                   #Start with an empty list.
     # count = 0
