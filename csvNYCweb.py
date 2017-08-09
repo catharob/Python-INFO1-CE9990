@@ -6,7 +6,7 @@ But I'm getting an odd error: "DECRYPTION_FAILED_OR_BAD_RECORD_MAC]"
 Posting this in case someone knows how to fix, and switching gears to read file from disk instead.
 
 """
-
+import datetime
 import sys
 import csv   #Comma-separated values.  Do not name this Python script csv.py.
 import urllib.request
@@ -20,43 +20,51 @@ except urllib.error.URLError as error:
     print("urllib.error.URLError", error)
     sys.exit(1)
 
+while True:
+    def score(fields):
+        return datetime.datetime.strptime(fields[1], "%m/%d/%Y %I:%M:%S %p")
 
-noiseLines = []                   #Start with an empty list.
+    zipCode = input("Please enter a 5 boros zip code: ")
+    print("Here are noise complaints made in this zip code from a random sample of five hundred 311 complaints.")
 
-for i, line in enumerate(lines):
-    try:
-        s = line.decode("utf-8")    #s is a string
-    except UnicodeError as unicodeError:
-        print(unicodeError)
-        sys.exit(1)
+    noiseLines = []                   #Start with an empty list.
+    # count = 0
+    for i, line in enumerate(lines):
+        try:
+            s = line.decode("utf-8")    #s is a string
+        except UnicodeError as unicodeError:
+            print(unicodeError)
+            sys.exit(1)
 
-    r = csv.reader([s])         #[s] is a list containing one string
-    fields = next(r)
-          #fields is a list of strings
-    print(fields[1])
-    if i >= 50:
+        r = csv.reader([s])         #[s] is a list containing one string
+        fields = next(r)
+              #fields is a list of strings
+        if fields[8] == zipCode and "Noise" in fields[6]:
+            noiseLines.append(fields)
+
+        if i>=10000:
+            break
+
+
+    noiseLines.sort(key = score, reverse = True)
+
+    if len(noiseLines) > 0:
+        for line in noiseLines:
+            print(line[1], line[8], line[5])
+    else:
+        print("Sorry, we couldn't find any noise complaints in that zip code.")
+
+    while True:
+        answer = input("Want me to try another sample? (y/n): ")
+        if answer in ('y', 'n'):
+            break
+        else:
+            print("Oops, I didn't catch that. Try 'y' or 'n'.")
+    if answer == 'y':
+        continue
+    else:
+        print("Okay bye.")
         break
 
-
-# for n, line in enumerate(lines): 
-#     for i in range(n, 0, -1): #here, trying to make it read from the topmost or latest entry in the data...
-#                                 #rather than the first or bottom entry
-#         try:
-#             s = line.decode("utf-8")    #s is a string
-#         except UnicodeError as unicodeError:
-#             print("unicodeError")
-#             sys.exit(1)
-
-#         r = csv.reader([s])         #[s] is a list containing one string
-#         fields = next(r) 
-
-
-#         if "08/04/2017" in fields[1]:  #trying to find just records entered on one day
-#             print(fields)
-
-
-
-
-# print(noiseLines)
 lines.close()
 sys.exit(0)
