@@ -1,14 +1,13 @@
 """
 csvNYCweb.py
 
-I'd like this to read from 311 NYC data and find something to match a zip code.
-But I'm getting an odd error: "DECRYPTION_FAILED_OR_BAD_RECORD_MAC]"
-Posting this in case someone knows how to fix, and switching gears to read file from disk instead.
+Takes an NYC zip code from user, takes a random slice of NYC 311 data, and filters for \
+noise complaints in that zip code. 
 
 """
 import datetime
 import sys
-import csv   #Comma-separated values.  Do not name this Python script csv.py.
+import csv   
 import urllib.request
 
 url = "https://data.cityofnewyork.us/api/views/erm2-nwe9/rows.csv?accessType=DOWNLOAD"
@@ -28,7 +27,7 @@ while True:
     print("Here are noise complaints made in this zip code from a random sample of ten thousand 311 complaints.")
 
     noiseLines = []                   #Start with an empty list.
-    # count = 0
+
     for i, line in enumerate(lines):
         try:
             s = line.decode("utf-8")    #s is a string
@@ -37,8 +36,8 @@ while True:
             sys.exit(1)
 
         r = csv.reader([s])         #[s] is a list containing one string
-        fields = next(r)
-              #fields is a list of strings
+        fields = next(r)            #fields is a list of strings
+
         if fields[8] == zipCode and "Noise" in fields[6]:
             noiseLines.append(fields)
 
