@@ -111,11 +111,10 @@ class Date(object):
         else:
             if self.month != 1:
                 self.month -= 1
-                self.day = Date.lengths[self.month]
             else: 
                 self.month = 12
                 self.year -= 1
-                self.day = Date.lengths[self.month]
+            self.day = Date.lengths[self.month]
 
     def prevDays(self, n):
         "Move myself n days into the past."
