@@ -11,11 +11,11 @@ import json
 class Location(object):
 
 	def __init__(self, latitude, longitude):
-		if not isinstance(latitude, int or float):
+		if not isinstance(latitude, int) and not isinstance(latitude, float):
 			raise TypeError("latitude must be int or float, not " + str(type(latitude)))
 		if latitude > 90 or latitude < -90:
 			raise ValueError("latitude must be in range -90 to 90")
-		if not isinstance(longitude, int or float):
+		if not isinstance(longitude, int) and not isinstance(longitude, float):
 			raise TypeError("longitude must be int or float, not " + str(type(longitude)))
 		if longitude > 180 or longitude < -180:
 			raise ValueError("longitude must be in range -180 to 180")
@@ -31,22 +31,22 @@ class Location(object):
 		return self.longitude
 
 	def __str__(self):
-		if latitude >= 0 and longitude >= 0:
+		if self.latitude >= 0 and self.longitude >= 0:
 			return "{}\u00B0N {}\u00B0E".format(self.latitude, self.longitude)
-		elif latitude < 0 and longitude >= 0:
+		elif self.latitude < 0 and self.longitude >= 0:
 			return "{}\u00B0S {}\u00B0E".format(self.latitude, self.longitude)
-		elif latitude < 0 and longitude < 0:
+		elif self.latitude < 0 and self.longitude < 0:
 			return "{}\u00B0S {}\u00B0W".format(self.latitude, self.longitude)
 		else:
 			return "{}\u00B0N {}\u00B0W".format(self.latitude, self.longitude)
 
-	def setLatitude(self):
+	def setLatitude(self, newLat):
 		"Change latitude"
-		self.__init__
+		self.latitude = newLat
 
-	def setLongitude(self):
+	def setLongitude(self, newLon):
 		"Change longitude"
-		self.__init__
+		self.longitude = newLon
 
 	def getZipcode(self):
 		"get zip code for a lat and long"
@@ -75,9 +75,11 @@ class Location(object):
 
 		try:
 			results = dictionary["results"]
-		except ValueError:
+		except KeyError:
 			return 0
 
+		if len(results) == 0:
+			return 0
 		firstResult = results[0]
 		try:
 			address_components = firstResult["address_components"]
